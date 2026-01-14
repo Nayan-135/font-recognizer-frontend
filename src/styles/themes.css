@@ -1,51 +1,95 @@
+/* themes.css - Enhanced Theme System */
+
 /* Light Theme */
-:root {
+[data-theme="light"] {
   --bg-primary: #ffffff;
-  --bg-secondary: #f9fafb;
-  --bg-tertiary: #f3f4f6;
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-tertiary: #6b7280;
-  --border-primary: #e5e7eb;
-  --border-secondary: #d1d5db;
-  --accent-blue: #3b82f6;
-  --accent-green: #10b981;
-  --accent-purple: #8b5cf6;
-  --accent-yellow: #f59e0b;
-  --shadow-color: rgba(0, 0, 0, 0.1);
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --bg-hover: #e2e8f0;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  
+  --border-color: #e2e8f0;
+  --border-hover: #cbd5e1;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  
+  --overlay: rgba(0, 0, 0, 0.5);
+  
+  color-scheme: light;
+}
+
+[data-theme="light"] body {
+  background: linear-gradient(135deg, 
+    #f8fafc 0%, 
+    #ffffff 25%, 
+    #f1f5f9 50%, 
+    #ffffff 75%, 
+    #f8fafc 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
 }
 
 /* Dark Theme */
 [data-theme="dark"] {
-  --bg-primary: #111827;
-  --bg-secondary: #1f2937;
-  --bg-tertiary: #374151;
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
-  --text-tertiary: #9ca3af;
-  --border-primary: #4b5563;
-  --border-secondary: #6b7280;
-  --accent-blue: #2563eb;
-  --accent-green: #059669;
-  --accent-purple: #7c3aed;
-  --accent-yellow: #d97706;
-  --shadow-color: rgba(0, 0, 0, 0.3);
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-hover: #475569;
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  
+  --border-color: #334155;
+  --border-hover: #475569;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6);
+  
+  --glass-bg: rgba(30, 41, 59, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  
+  --overlay: rgba(0, 0, 0, 0.7);
+  
+  color-scheme: dark;
 }
 
-/* Backgrounds */
+[data-theme="dark"] body {
+  background: linear-gradient(135deg, 
+    #0f172a 0%, 
+    #1e293b 25%, 
+    #0a0f1c 50%, 
+    #1e293b 75%, 
+    #0f172a 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+}
+
+/* Theme-aware backgrounds */
 .bg-primary {
-  background-color: var(--bg-primary);
+  background: var(--bg-primary);
 }
 
 .bg-secondary {
-  background-color: var(--bg-secondary);
+  background: var(--bg-secondary);
 }
 
 .bg-tertiary {
-  background-color: var(--bg-tertiary);
+  background: var(--bg-tertiary);
 }
 
-/* Text colors */
+/* Theme-aware text */
 .text-primary {
   color: var(--text-primary);
 }
@@ -58,45 +102,123 @@
   color: var(--text-tertiary);
 }
 
-/* Border colors */
-.border-primary {
-  border-color: var(--border-primary);
+/* Theme-aware borders */
+.border {
+  border: 1px solid var(--border-color);
 }
 
-.border-secondary {
-  border-color: var(--border-secondary);
+/* Theme-aware shadows */
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
 }
 
-/* Accent colors */
-.bg-accent-blue {
-  background-color: var(--accent-blue);
+.shadow-md {
+  box-shadow: var(--shadow-md);
 }
 
-.bg-accent-green {
-  background-color: var(--accent-green);
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
 }
 
-.bg-accent-purple {
-  background-color: var(--accent-purple);
+.shadow-xl {
+  box-shadow: var(--shadow-xl);
 }
 
-.text-accent-blue {
-  color: var(--accent-blue);
+/* Glass effect */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
 }
 
-.text-accent-green {
-  color: var(--accent-green);
+/* Animated background particles */
+[data-theme="light"]::before,
+[data-theme="dark"]::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.3;
 }
 
-.text-accent-purple {
-  color: var(--accent-purple);
+[data-theme="light"]::before {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.03) 0%, transparent 50%);
 }
 
-.text-accent-yellow {
-  color: var(--accent-yellow);
+[data-theme="dark"]::before {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
 }
 
-/* Shadows */
-.shadow-theme {
-  box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -2px var(--shadow-color);
+/* Smooth theme transition */
+* {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Interactive hover states */
+.interactive-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-card:hover {
+  transform: translateY(-4px);
+}
+
+[data-theme="light"] .interactive-card:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15);
+}
+
+[data-theme="dark"] .interactive-card:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.4);
+}
+
+/* Gradient overlays */
+.gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Glow effects */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+}
+
+[data-theme="dark"] .glow-primary {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+[data-theme="dark"] .glow-secondary {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+}
+
+[data-theme="dark"] .glow-accent {
+  box-shadow: 0 0 30px rgba(236, 72, 153, 0.5);
 }
