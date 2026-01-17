@@ -13,12 +13,15 @@ const ImageInput = ({ isDarkMode, onPrediction, onImageUpload }) => {
   const fileInputRef = useRef(null);
 
   const [isDragOver, setIsDragOver] = useState(false);
-  const [isUploaded, setIsUploaded] = useState(false);
   const [error, setError] = useState("");
   const [uploadedFileName, setUploadedFileName] = useState("");
   const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
-  const [isProcessing, setIsProcessing] = useState(false);
   const [step, setStep] = useState("upload"); // upload | processing | done
+  // eslint-disable-next-line no-unused-vars
+const [isUploaded, setIsUploaded] = useState(false);
+
+// eslint-disable-next-line no-unused-vars
+const [isProcessing, setIsProcessing] = useState(false);
 
   const API_URL = process.env.REACT_APP_API_URL;
 
